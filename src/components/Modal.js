@@ -1,10 +1,27 @@
 import styled from "styled-components";
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 import { Button } from "../styles/Button";
 
+import LoadingModal from "./Loading";
+import { useUserContext } from "../context/user_context";
+import { useEffect } from "react";
+import Notification from "./Notification";
+
+import {AiFillFacebook} from 'react-icons/ai'
+import { auth } from "../Helpers/config";
+import { signInWithPopup } from "firebase/auth";
+import { FacebookAuthProvider } from "firebase/auth";
+
+const provider = new FacebookAuthProvider();
 
 const Modal = ()=>{
     const [isSignUp, setIsSignUp] = useState(false);
+
+    const {user, isLoading, isNotification,setUserSignIn} = useUserContext();
+
+    const emailRef = useRef()
+    const passwordRef = useRef()
+
 
     const signUpClicked = ()=>{        
         setIsSignUp(true);
@@ -16,11 +33,15 @@ const Modal = ()=>{
 
     const submitHandler = (e) =>{
         e.preventDefault();
-
+        setUserSignIn(emailRef.current.value, passwordRef.current.value);
     }
+
+
 
     return (
         <Wrapper className="modal-container">
+            { isLoading && <LoadingModal /> }
+            {isNotification && <Notification /> }
             <div className="modal">
                 <header>
                     <p onClick={signInClicked} style={
@@ -39,19 +60,27 @@ const Modal = ()=>{
                 { !isSignUp &&
                     <form className="modal-content" onSubmit={submitHandler}>
                         <p>Login</p>
-                        <input type="input" placeholder="Username..."></input>
-                        <input type="password" placeholder="Password..."></input>
+                        <input type="input" placeholder="Email..." ref={emailRef} ></input>
+                        <input type="password" placeholder="Password..." ref={passwordRef}></input>
+                        
                         <a>Forget your password?</a>
                         <div className="modal-content-footer">
-                            <Button type="submit"> Sign In </Button>
+                                <Button type="submit"> Sign In </Button>
                         </div>
+                        <div className={"divider"}></div>
+                        <div className="modal-content-footer">
+                            <Button  className="btn_inverted" onClick={()=>{
+                                //can be improved, but user only wanted to display the button
+                                signInWithPopup(auth,provider)
+                            }}> Sign In with Facebook <AiFillFacebook size={24}  /></Button>
+                        </div>
+
                     </form>
                 }
                 { isSignUp &&
                     <form className="modal-content" >
                         <p>Sign Up</p>
-                        <input type="input" placeholder="Fullname..."></input>
-                        <input type="input" placeholder="Username..."></input>
+                        <input type="input" placeholder="Phone Number..."></input>
                         <input type="email" placeholder="Email..."></input>
                         <input type="password" placeholder="Password..."></input>
                         <input type="password" placeholder="Confirmed Password..."></input>
@@ -71,7 +100,44 @@ const Wrapper = styled.section`
     display: flex;
     justify-content: center;
     font-family: 'Montserrat', sans-serif;
+    .divider{
+        height: 10px;
+        width: 100%;
+        position: relative;
+        margin: 20px 0 ;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     
+    .divider::before{
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background: rgba(0, 0, 0, 0.5);
+        top: 50%;
+        left: 0;
+    }
+    .divider::after{
+        content: 'Or';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 0 10px;
+        background: white;
+        color: rgba(0, 0, 0, 0.5);
+    }
+    .btn_inverted{
+        margin-top: -2rem ;
+        background-color: white;
+        color: rgb(98 84 243);
+        border: 2px solid rgb(98 84 243);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .modal{
         width: 40rem;
         height: 50%;

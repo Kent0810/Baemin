@@ -13,11 +13,12 @@ import {
 import { storage } from "../Helpers/config";
 const Product = (curElem) => {
 
-  const { id, name, image, price, category } = curElem;
+  const { id, name, img, price, category } = curElem;
 
   const [imageUrls, setImageUrls] = useState([]);
   const imagesRef = ref(storage, `Images/${id}/Logo.jpg`);
 
+  console.log(curElem)
 
   useEffect(() => {
     getDownloadURL(imagesRef)
@@ -25,9 +26,19 @@ const Product = (curElem) => {
       setImageUrls((prev) => [...prev, url]);
     })
   },[])
+
+
+  const product = {
+    id: id,
+    name: name,
+    img:img,
+    price: price,
+    category:category,
+  };
+
   
   return (
-    <NavLink to={`/products/${id}`}>
+    <NavLink to={category==='others'?`singleproduct/${name}`:`/products/${id}`} state={product}>
       <div style={{padding:"1rem"}} className="card" >
         <figure >
             {imageUrls.map((url) => {
@@ -35,7 +46,7 @@ const Product = (curElem) => {
                 objectFit:"contain",
               }} src={url}/>;
             })}
-          <figcaption className="caption">{category}</figcaption>
+          <figcaption className="caption">{category==='others'? <FormatPrice price={price}></FormatPrice>:category}</figcaption>
         </figure>
 
         <div className="card-data">

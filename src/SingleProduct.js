@@ -13,6 +13,7 @@ import AddToCart from "./components/AddToCart";
 
 import { useLocation } from "react-router-dom"
 
+
 const API = "https://api.pujakaitem.com/api/products";
 
 const SingleProduct = (props) => {

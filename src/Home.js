@@ -1,3 +1,4 @@
+import FeatureFood from "./components/FeatureFood";
 import FeatureProduct from "./components/FeatureProduct";
 import HeroSection from "./components/HeroSection";
 import Services from "./components/Services";
@@ -12,6 +13,16 @@ const Home = () => {
     <>
       <HeroSection myData={data} />
       <FeatureProduct />
+      <div style={
+        {
+          width:"100%",
+          height:"100px",
+          backgroundColor:"white"
+        }
+      }>
+        h
+      </div>
+      <FeatureFood />
       {/* <Services /> */}
       {/* <Trusted /> */}
     </>

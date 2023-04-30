@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
 import { useCartContext } from "../context/cart_context";
+
+import { auth } from "../Helpers/config";
+import { onAuthStateChanged } from "firebase/auth";
+// import { Button } from "../styles/Button";
+
+import { useUserContext } from "../context/user_context";
 
 const Nav = () => {
   const [menuIcon, setMenuIcon] = useState();
@@ -163,6 +169,24 @@ const Nav = () => {
     }
   `;
 
+
+  const {user} = useUserContext()
+  
+  const [userInfo, setUserInfo] = useState(null)
+
+  useEffect( ()=>{
+      const CheckUser = () => {
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            setUserInfo(user)
+          } else {
+            setUserInfo(null)
+          }
+        });
+      }
+      CheckUser()
+  },[])
+
   return (
     <Nav>
       <div className={menuIcon ? "navbar active" : "navbar"}>
@@ -190,7 +214,7 @@ const Nav = () => {
               <span className="cart-total--item"> {total_item} </span>
             </NavLink>
           </li>
-          <li>
+         { !userInfo?.email && <li>
             <NavLink 
               to="/login" 
               className="navbar-link"
@@ -198,7 +222,18 @@ const Nav = () => {
               >
               Login
             </NavLink>
+          </li> }
+          {
+            userInfo && <li>
+            <NavLink
+              to="/user"
+              className="navbar-link"
+              onClick={() => setMenuIcon(false)}
+              >
+              {userInfo.email}
+            </NavLink>
           </li>
+          }
         </ul>
 
         {/* two button for open and close of menu */}

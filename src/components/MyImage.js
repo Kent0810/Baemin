@@ -7,7 +7,7 @@ const MyImage = ({ imgs = [{ img: "" }] }) => {
   return (
     <Wrapper>
       <div className="main-screen">
-        <img src={imgs[0]} alt={mainImage.filename} />
+        <img src={imgs[0]} alt={mainImage?.filename} />
       </div>
     </Wrapper>
   );

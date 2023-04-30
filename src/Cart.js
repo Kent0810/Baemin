@@ -371,8 +371,8 @@ const Wrapper = styled.section`
     text-transform: capitalize;
     text-align: left;
     img {
-      max-width: 5rem;
-      height: 5rem;
+      max-width: 10rem;
+      height: 10rem;
       object-fit: contain;
       color: transparent;
     }

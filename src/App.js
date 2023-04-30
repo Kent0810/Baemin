@@ -13,6 +13,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Login from "./Login";
 import Status from "./Status";
+import Profile from "./Profile";
+import User from "./User";
 
 const App = () => {
   const theme = {
@@ -55,6 +57,8 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/status" element={<Status />} />
+          <Route path="/user" element={<User />} />
+          <Route path="/user/profile" element={<Profile />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />

@@ -34,6 +34,8 @@ export const FilterContextProvider = ({ children }) => {
 
   const [value, setValue] = useState(0);
 
+  const [textValue, setTextValue] = useState("");
+
   const [state, dispatch] = useReducer(reducer, initialState);
 
   // to set the grid view
@@ -55,15 +57,20 @@ export const FilterContextProvider = ({ children }) => {
 
   // // update the filter values
   const updateFilterValue = (event) => {
+    
     let id = event.target.id
     let name = event.target.name;
     let value = event.target.value;
+
 
     if (name === "category"){
       setCategory(value);
     }
     else if (name === "price"){
       setValue(value);
+    }
+    else if(name === "text"){
+      setTextValue(value);
     }
     return dispatch({ type: "UPDATE_FILTERS_VALUE", payload: { name, value, id } });
   };
@@ -90,6 +97,7 @@ export const FilterContextProvider = ({ children }) => {
         ...state,
         category,
         value,
+        textValue,
         setGridView,
         setListView,
         // sorting,

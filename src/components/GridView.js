@@ -9,41 +9,47 @@ const GridView = ({ products,id }) => {
 // FILTERING ID HERE - START //
 const {
   category,
-  value
+  value,
+  textValue
 } = useFilterContext();
 
+function removeAccents(str) {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
 
 // FILTERING ID HERE - END //
   return (
     <Wrapper className="section">
       <div className="container grid grid-three-column">
-        {products.map((product) => {      
+        {products.map((product) => {   
           if(value < product.price && product.price < value + 1000000){
-          if(category === "all" || category === product.category){  
-            return(
-              <NavLink to={`/singleproduct/${product.name}`} state={product}>
-                <div style={{padding:"1rem"}} className="card" >
-                  <figure >
-                      <img src={product.img}>
-                        
-                      </img>
-                    <figcaption className="caption">{product.price.toLocaleString('en-US', {
-                          style: 'currency',
-                          currency: 'VND',
-                        })}
-                    </figcaption>
-                  </figure>
+            if(category === "all" || category === product.category){  
+              if(textValue === "" || removeAccents(product.name).toLowerCase().includes(removeAccents(textValue).toLowerCase())){
+                  return(
+                    <NavLink to={`/singleproduct/${product.name}`} state={product}>
+                      <div style={{padding:"1rem"}} className="card" >
+                        <figure >
+                            <img src={product.img}>
+                              
+                            </img>
+                          <figcaption className="caption">{product.price.toLocaleString('en-US', {
+                                style: 'currency',
+                                currency: 'VND',
+                              })}
+                          </figcaption>
+                        </figure>
 
-                  <div className="card-data">
-                    <div className="card-data-flex">
-                      <h3>{product.name} </h3>
-                    </div>
-                  </div>
-                </div>
-            </NavLink>
-
-            )
-          }}
+                        <div className="card-data">
+                          <div className="card-data-flex">
+                            <h3>{product.name} </h3>
+                          </div>
+                        </div>
+                      </div>
+                  </NavLink>
+                  )
+                }
+              }
+            }
         })}
       </div>
     </Wrapper>
