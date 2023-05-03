@@ -36,7 +36,7 @@ const AddToCart = ({ product }) => {
       <NavLink to="/cart" onClick={() => {
           addToCart(name, amount, product)
         }}>
-        <Button className="btn">Add To Cart</Button>
+        <Button className="btn">Thêm Vào Giỏ Hàng</Button>
       </NavLink>
     </Wrapper>
   );

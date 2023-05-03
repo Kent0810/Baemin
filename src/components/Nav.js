@@ -205,7 +205,7 @@ const Nav = () => {
               to="/contact"
               className="navbar-link "
               onClick={() => setMenuIcon(false)}>
-              Contact
+              Liên Hệ
             </NavLink>
           </li>
           <li>
@@ -220,7 +220,7 @@ const Nav = () => {
               className="navbar-link"
               onClick={() => setMenuIcon(false)}
               >
-              Login
+              Đăng Nhập
             </NavLink>
           </li> }
           {

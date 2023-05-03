@@ -29,7 +29,7 @@ const UserProvider = ({children})=>{
                 const user = userCredential.user;
                 dispatch({type:"SET_USER", payload:user})
                 dispatch({type:"LOADING"})
-                setNotification("You can close this box now", "Login Successfully")
+                setNotification("Bạn có thể đóng cửa sổ này", "Đăng Nhập Thành Công")
 
 
             }catch(err){

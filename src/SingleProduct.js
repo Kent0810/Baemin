@@ -92,8 +92,8 @@ const SingleProduct = (props) => {
 
             <div className="product-data-info">
               <p>
-                Available: 
-                <span> In Stock</span>
+                Tình Trạng Cửa Hàng: 
+                <span style={{color:"green"}}> Còn Mở </span>
               </p>
               <p>
 

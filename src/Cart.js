@@ -16,8 +16,8 @@ const Cart = () => {
   const orderEmailRef = useRef();
   const orderAddressRef = useRef();
   const orderPhoneRef = useRef();
-  const orderPaymentRef = useRef();
-
+  const orderPaymentMoneyRef = useRef();
+  const orderPaymentCardRef = useRef();
   let total_price = 0;
 
   const navigate = useNavigate()
@@ -29,7 +29,7 @@ const Cart = () => {
   if (cart.length === 0) {
     return (
       <EmptyDiv>
-        <h3>Empty Cart</h3>
+        <h3>Giỏ Hàng Trống...</h3>
       </EmptyDiv>
     );
   }
@@ -41,12 +41,19 @@ const Cart = () => {
     // if(order.length>0){
     //   alert("Hãy thử lại sau, chỉ được đặt 1 đơn hàng 1 lần")
     // }
-    if(orderNameRef.current.value === "" || orderEmailRef.current.value === "" || orderAddressRef.current.value === "" || orderPhoneRef.current.value === "" || orderPaymentRef.current.value === ""){
+    console.log(orderPaymentMoneyRef.current.value)
+    if(orderNameRef.current.value === "" || orderEmailRef.current.value === "" || orderAddressRef.current.value === "" || orderPhoneRef.current.value === "" || orderPaymentMoneyRef.current.value === "" || orderPaymentCardRef.current.value === ""){
       alert("Vui lòng nhập đầy đủ thông tin")
     }else{
       Checkout(cart);
-      clearCart();
-      navigate("/status")
+      
+      if(orderPaymentCardRef.current.checked){
+        alert("Đặt hàng thành công, vui lòng chờ xác nhận")
+        clearCart();
+        window.open("https://business.momo.vn/login")
+        navigate("/status")
+      }
+     
     }
   }
 
@@ -55,11 +62,11 @@ const Cart = () => {
       <div className="container">
         <h1>Cart</h1>
         <div className="cart_heading grid grid-five-column">
-          <p>Item</p>
-          <p className="cart-hide">Price</p>
-          <p>Quantity</p>
-          <p className="cart-hide">Subtotal</p>
-          <p>Remove</p>
+          <p>Món Ăn</p>
+          <p className="cart-hide">Giá</p>
+          <p>Số Lượng</p>
+          <p className="cart-hide">Thành Tiền</p>
+          <p>Xóa</p>
         </div>
         <hr />
         <div className="cart-item">
@@ -70,15 +77,15 @@ const Cart = () => {
         <hr />
         <div className="cart-two-button">
           <NavLink to="/">
-              <Button>Continue Shopping</Button>
+              <Button>Trở Lại</Button>
           </NavLink>
           <Button className="btn btn-clear" onClick={clearCart}>
-            Clear cart
+            Xóa Tất Cả
           </Button>
         </div>
           
         <div className="checkout_btn">
-          <Button onClick={clickHandler}> Checkout </Button>
+          <Button onClick={clickHandler}> Thanh Toán </Button>
         </div>
           {/* checkout modal */}
           {isCheckout && (
@@ -91,11 +98,11 @@ const Cart = () => {
                   <h3>Checkout</h3>
                   <div className="checkout-modal--items--data">
                     <div className="cart_heading grid grid-five-column">
-                      <p>Item</p>
-                      <p className="cart-hide">Price</p>
-                      <p>Quantity</p>
-                      <p className="cart-hide">Subtotal</p>
-                      <p>Remove</p>
+                      <p>Món Ăn</p>
+                      <p className="cart-hide">Giá</p>
+                      <p>Số Lượng</p>
+                      <p className="cart-hide">Thành Tiền</p>
+                      <p>Xóa</p>
                     </div>
                     <hr />
                     <div className="cart-item">
@@ -127,32 +134,32 @@ const Cart = () => {
                       </form>
                       
                       <div className="modal_center">
-                        <h3>Payment</h3>
+                        <h3>Phương Thức Thanh Toán</h3>
                         <form>
-                          <input type="radio" id="COD" name="payment" value="COD" ref={orderPaymentRef}/>
+                          <input type="radio" id="COD" name="payment" value="COD" ref={orderPaymentMoneyRef}/>
                           <label for="COD">Trả tiền khi nhận hàng</label><br />
-                          <input type="radio" id="CARD" name="payment" value="CARD" ref={orderPaymentRef}/>
-                          <label for="CARD">Chuyển Khoản</label><br />
+                          <input type="radio" id="CARD" name="payment" value="CARD" ref={orderPaymentCardRef}/>
+                          <label for="CARD">Chuyển khoản</label><br />
                         </form>
                       </div>
                       <div className="footer_right">
                         <div className="order-total--amount">
                             <div className="order-total--subdata">
                               <div>
-                                <p>subtotal:</p>
+                                <p>Thành Tiền:</p>
                                 <p>
                                   <FormatPrice price={total_price} />
                                 </p>
                               </div>
                               <div>
-                                <p>shipping fee:</p>
+                                <p>Phí Giao Hàng:</p>
                                 <p>
                                   <FormatPrice price={shipping_fee} />
                                 </p>
                               </div>
                               <hr />
                               <div>
-                                <p>order total:</p>
+                                <p>Tổng Hóa Đơn:</p>
                                 <p>
                                   <FormatPrice price={shipping_fee + total_price} />
                                 </p>
@@ -174,20 +181,20 @@ const Cart = () => {
         <div className="order-total--amount">
           <div className="order-total--subdata">
             <div>
-              <p>subtotal:</p>
+              <p>Thành Tiền:</p>
               <p>
                 <FormatPrice price={total_price} />
               </p>
             </div>
             <div>
-              <p>shipping fee:</p>
+              <p>Phí giao hàng:</p>
               <p>
                 <FormatPrice price={shipping_fee} />
               </p>
             </div>
             <hr />
             <div>
-              <p>order total:</p>
+              <p>Tổng Hóa Đơn:</p>
               <p>
                 <FormatPrice price={shipping_fee + total_price} />
               </p>

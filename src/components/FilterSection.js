@@ -114,7 +114,7 @@ const FilterSection = () => {
         </div>
       </div>
       <div className="filter_price">
-        <h3>Price</h3>
+        <h3>Giá</h3>
         <p>
           <FormatPrice price={price} />
         </p>
@@ -130,7 +130,7 @@ const FilterSection = () => {
 
       <div className="filter-clear">
         <Button className="btn" onClick={clearFilters}>
-          Clear Filters
+          Xóa Filters
         </Button>
       </div>
     </Wrapper>

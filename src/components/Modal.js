@@ -49,44 +49,44 @@ const Modal = ()=>{
                             backgroundColor: !isSignUp ? "rgb(98 84 243)" : "rgb(255 255 255)",
                             color: !isSignUp ? "rgb(255 255 255)" : "rgb(98 84 243)",
                         }
-                    } className="left">Sign In</p>
+                    } className="left">Đăng Nhập</p>
                     <p onClick={signUpClicked} style={
                         {
                             backgroundColor: isSignUp ? "rgb(98 84 243)" : "rgb(255 255 255)",
                             color: isSignUp ? "rgb(255 255 255)" : "rgb(98 84 243)",
                         }
-                    } className="right">Sign Up</p>
+                    } className="right">Đăng Ký</p>
                 </header>
                 { !isSignUp &&
                     <form className="modal-content" onSubmit={submitHandler}>
-                        <p>Login</p>
+                        <p>Đăng Nhập</p>
                         <input type="input" placeholder="Email..." ref={emailRef} ></input>
                         <input type="password" placeholder="Password..." ref={passwordRef}></input>
                         
-                        <a>Forget your password?</a>
+                        <a>Quên Mật Khẩu?</a>
                         <div className="modal-content-footer">
-                                <Button type="submit"> Sign In </Button>
+                                <Button type="submit"> Đăng Nhập </Button>
                         </div>
                         <div className={"divider"}></div>
                         <div className="modal-content-footer">
                             <Button  className="btn_inverted" onClick={()=>{
                                 //can be improved, but user only wanted to display the button
                                 signInWithPopup(auth,provider)
-                            }}> Sign In with Facebook <AiFillFacebook size={24}  /></Button>
+                            }}> Đăng Nhập Với Facebook <AiFillFacebook size={24}  /></Button>
                         </div>
 
                     </form>
                 }
                 { isSignUp &&
                     <form className="modal-content" >
-                        <p>Sign Up</p>
+                        <p>Đăng Ký</p>
                         <input type="input" placeholder="Phone Number..."></input>
                         <input type="email" placeholder="Email..."></input>
                         <input type="password" placeholder="Password..."></input>
                         <input type="password" placeholder="Confirmed Password..."></input>
                         <input type="date" placeholder="Date of Birth..."></input>
                         <div className="modal-content-footer">
-                            <Button > Sign Up </Button>
+                            <Button > Đăng Ký </Button>
                         </div>
                     </form>
                 }

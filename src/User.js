@@ -27,12 +27,12 @@ const User = () => {
                         <div onClick={()=>{
                             setIsOrderStatus(!isOrderStatus) 
                             setIsOrderHistory(false)
-                            }}>Orders Status</div>
+                            }}>Tình Trạng Đơn Hàng</div>
                         <div onClick={()=>{
                             setIsOrderHistory(!isOrderHistory)
                             setIsOrderStatus(false)
-                        }}>Orders History</div>
-                        <NavLink to='/user/profile' className="third_btn">Profile</NavLink>
+                        }}>Lịch Sử Đơn Hàng</div>
+                        <NavLink to='/user/profile' className="third_btn">Trang Cá Nhân</NavLink>
                     </div>
                 </div>
             </div>

@@ -23,7 +23,7 @@ const Star = ({ stars, reviews }) => {
     <Wrapper>
       <div className="icon-style">
         {ratingStar}
-        <p>({reviews} customer reviews)</p>
+        <p>({reviews} lượt đánh giá)</p>
       </div>
     </Wrapper>
   );

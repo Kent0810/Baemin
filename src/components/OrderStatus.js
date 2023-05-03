@@ -7,7 +7,7 @@ const OrderStatus = () => {
     console.log(order)
     return (
         <Wrapper>
-            <h1>Order Status</h1>
+            <h1>Trạng Thái Đơn Hàng</h1>
             {order.length>0&&
               <div className="cart_heading grid grid-five-column">
                   <p>Quán Ăn</p>
