@@ -17,7 +17,7 @@ const Footer = () => {
 
             <div>
               <Button className="btn hireme-btn">
-                <NavLink to="/"> Get Started </NavLink>
+                <NavLink to="/"> Bắt Đầu </NavLink>
               </Button>
             </div>
           </div>
@@ -28,18 +28,18 @@ const Footer = () => {
           <div className="container grid grid-four-column">
             <div className="footer-about">
               <h3>Baemin Technical</h3>
-              <p>Created By BAK. </p>
+              {/* <p>Created By BAK. </p> */}
             </div>
             <div className="footer-subscribe">
-              <h3>Subscribe to get important updates</h3>
+              <h3>Đăng ký để nhận thêm nhiều cập nhật</h3>
               <form action="#">
-                <input type="email" name="email" placeholder="YOUR E-MAIL" />
+                <input type="email" name="email" placeholder="Email..." />
 
-                <input type="submit" value="subscribe" />
+                <input type="submit" value="Đăng Ký" />
               </form>
             </div>
             <div className="footer-social">
-              <h3>Follow Us</h3>
+              <h3>Theo dõi ngay !</h3>
               <div className="footer-social--icons">
                 <div>
                   <FaDiscord className="icons" />
@@ -57,7 +57,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="footer-contact">
-              <h3>Call Us</h3>
+              <h3>Liên hệ</h3>
               <h3>+84 12345678978</h3>
             </div>
           </div>
@@ -69,8 +69,8 @@ const Footer = () => {
                 @{new Date().getFullYear()} AK Technical. All Rights Reserved
               </p>
               <div>
-                <p>PRIVACY POLICY</p>
-                <p>TERMS & CONDITIONS</p>
+                <p>QUYỀN RIÊNG TƯ</p>
+                <p>ĐIỀU KHOẢN & DỊCH VỤ</p>
               </div>
             </div>
           </div>

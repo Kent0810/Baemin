@@ -27,7 +27,7 @@ const User = () => {
                         <div onClick={()=>{
                             setIsOrderStatus(!isOrderStatus) 
                             setIsOrderHistory(false)
-                            }}>Tình Trạng Đơn Hàng</div>
+                            }}>Status</div>
                         <div onClick={()=>{
                             setIsOrderHistory(!isOrderHistory)
                             setIsOrderStatus(false)

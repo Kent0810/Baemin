@@ -16,7 +16,7 @@ const HeroSection = ({ myData }) => {
             Baemin Store là một trang web đặt hàng đồ ăn trực tuyến, cho phép người dùng tìm kiếm và đặt hàng đồ ăn từ nhà hàng yêu thích của họ. Trang web cung cấp các chức năng như tìm kiếm địa điểm nhà hàng, xem thực đơn, chọn món ăn và đặt hàng trực tuyến.
             </p>
             <NavLink>
-              <Button>Shop Now</Button>
+              <Button>Mua Sắm Ngay</Button>
             </NavLink>
           </div>
           {/* our homepage image  */}

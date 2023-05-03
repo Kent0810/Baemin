@@ -35,10 +35,10 @@ const Contact = () => {
 
   return (
     <Wrapper>
-      <h2 className="common-heading">Contact page</h2>
+      <h2 className="common-heading">Liên Hệ</h2>
 
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.265588856342!2d73.91455641541671!3d18.562061287384868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c147b8b3a3bf%3A0x6f7fdcc8e4d6c77e!2sPhoenix%20Marketcity%20-%20Viman%20Nagar!5e0!3m2!1sen!2sin!4v1664345115285!5m2!1sen!2sin"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5364287392954!2d106.70132721113353!3d10.770165559263845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f416dbd34ad%3A0xf69a7d075c5c4d10!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOZ8OibiBow6BuZyBUUC5IQ00gLSBUcuG7pSBz4bufIGNow61uaA!5e0!3m2!1svi!2s!4v1683127555223!5m2!1svi!2s"
         width="100%"
         height="400"
         style={{ border: 0 }}
@@ -54,7 +54,7 @@ const Contact = () => {
             className="contact-inputs">
             <input
               type="text"
-              placeholder="username"
+              placeholder="Username"
               name="username"
               required
               autoComplete="off"
@@ -76,7 +76,7 @@ const Contact = () => {
               autoComplete="off"
               placeholder="Enter you message"></textarea>
 
-            <input type="submit" value="send" />
+            <input type="submit" value="Gửi" />
           </form>
         </div>
       </div>
