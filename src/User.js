@@ -4,7 +4,11 @@ import styled from "styled-components";
 import { auth } from "./Helpers/config";
 import userAvatar from '../src/assests/user.jpg'
 import OrderStatus from "./components/OrderStatus";
+import { useState } from "react";
+import OrderHistory from "./components/OrderHistory";
 const User = () => {
+    const [isOrderStatus, setIsOrderStatus] = useState(false);
+    const [isOrderHistory, setIsOrderHistory] = useState(false);
     return (
         <Wrapper>
             <div className="user_info">
@@ -13,20 +17,27 @@ const User = () => {
 
                 </div>
                 <div className="user_info_name">
-                    {auth?.currentUser.email}
+                    {auth?.currentUser?.email}
                 </div>
                 
             </div>
             <div className="order_container">
                 <div className="order_content">
                     <div className="order_content_header">
-                        <div>Orders Status</div>
-                        <div>Orders History</div>
+                        <div onClick={()=>{
+                            setIsOrderStatus(!isOrderStatus) 
+                            setIsOrderHistory(false)
+                            }}>Orders Status</div>
+                        <div onClick={()=>{
+                            setIsOrderHistory(!isOrderHistory)
+                            setIsOrderStatus(false)
+                        }}>Orders History</div>
                         <NavLink to='/user/profile' className="third_btn">Profile</NavLink>
                     </div>
                 </div>
             </div>
-            <OrderStatus/>
+            {isOrderStatus   && <OrderStatus/>}
+            {isOrderHistory  && <OrderHistory/>}
         </Wrapper>
     )
 }

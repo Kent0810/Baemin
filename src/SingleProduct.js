@@ -9,6 +9,8 @@ import FormatPrice from "./Helpers/FormatPrice";
 import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import Star from "./components/Star";
+import {VscVerified} from "react-icons/vsc"
+import {IoStarSharp} from "react-icons/io5"
 import AddToCart from "./components/AddToCart";
 
 import { useLocation } from "react-router-dom"
@@ -69,17 +71,17 @@ const SingleProduct = (props) => {
             <div className="product-data-warranty">
               <div className="product-warranty-data">
                 <TbTruckDelivery className="warranty-icon" />
-                <p>Free Delivery</p>
+                <p>Giao hàng miễn phí</p>
               </div>
 
               <div className="product-warranty-data">
-                <TbReplace className="warranty-icon" />
-                <p>Hoàn Trả 5%</p>
+                <VscVerified className="warranty-icon" />
+                <p>Xác Thực bởi Baemin</p>
               </div>
 
               <div className="product-warranty-data">
-                <TbTruckDelivery className="warranty-icon" />
-                <p>Baemin Delivered </p>
+                <IoStarSharp className="warranty-icon" />
+                <p>Quán "Hot"</p>
               </div>
 
               <div className="product-warranty-data">
@@ -94,7 +96,7 @@ const SingleProduct = (props) => {
                 <span> In Stock</span>
               </p>
               <p>
-                Brand :<span> {"Baemin"} </span>
+
               </p>
             </div>
             <hr />

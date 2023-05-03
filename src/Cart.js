@@ -1,17 +1,26 @@
 import styled from "styled-components";
 import { useCartContext } from "./context/cart_context";
 import CartItem from "./components/CartItem";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from "./styles/Button";
 import FormatPrice from "./Helpers/FormatPrice";
-import { useState } from "react";
+import { useState,useRef } from "react";
+import { useOrderContext } from "./context/order_context";
 
 const Cart = () => {
   const { cart, clearCart, shipping_fee } = useCartContext();
+  const { Checkout,order } = useOrderContext();
   const [isCheckout, setIsCheckout] = useState(false);
 
-  // console.log("🚀 ~ file: Cart.js ~ line 6 ~ Cart ~ cart", cart);
+  const orderNameRef = useRef();
+  const orderEmailRef = useRef();
+  const orderAddressRef = useRef();
+  const orderPhoneRef = useRef();
+  const orderPaymentRef = useRef();
+
   let total_price = 0;
+
+  const navigate = useNavigate()
 
   cart.forEach((item) => {
     total_price += item.price * item.amount;
@@ -28,6 +37,18 @@ const Cart = () => {
   const clickHandler = () => {
     setIsCheckout(true);
   };
+  const CheckoutHandler = () => {
+    // if(order.length>0){
+    //   alert("Hãy thử lại sau, chỉ được đặt 1 đơn hàng 1 lần")
+    // }
+    if(orderNameRef.current.value === "" || orderEmailRef.current.value === "" || orderAddressRef.current.value === "" || orderPhoneRef.current.value === "" || orderPaymentRef.current.value === ""){
+      alert("Vui lòng nhập đầy đủ thông tin")
+    }else{
+      Checkout(cart);
+      clearCart();
+      navigate("/status")
+    }
+  }
 
   return (
     <Wrapper>
@@ -49,7 +70,7 @@ const Cart = () => {
         <hr />
         <div className="cart-two-button">
           <NavLink to="/">
-              <Button> Continue Shopping </Button>
+              <Button>Continue Shopping</Button>
           </NavLink>
           <Button className="btn btn-clear" onClick={clearCart}>
             Clear cart
@@ -88,19 +109,19 @@ const Cart = () => {
                         <div >
                           <div>
                             <label htmlFor="name">Name</label>
-                            <input type="text" id="name" placeholder="Your Full Name..." />
+                            <input type="text" id="name" placeholder="Họ và Tên..." ref={orderNameRef} />
                           </div>
                           <div>
                             <label htmlFor="email">Email</label>
-                            <input type="email" id="email" placeholder="Email..." />
+                            <input type="email" id="email" placeholder="Email..." ref={orderEmailRef}/>
                           </div>
                           <div>
                             <label htmlFor="address">Address</label>
-                            <input type="text" id="address" placeholder="Address..."/>
+                            <input type="text" id="address" placeholder="Địa Chỉ..." ref={orderAddressRef}/>
                           </div>
                           <div>
                             <label htmlFor="city">Phone</label>
-                            <input type="phone" id="phone" placeholder="Phone No..." />
+                            <input type="phone" id="phone" placeholder="SĐT..." ref={orderPhoneRef}/>
                           </div>
                         </div>
                       </form>
@@ -108,9 +129,9 @@ const Cart = () => {
                       <div className="modal_center">
                         <h3>Payment</h3>
                         <form>
-                          <input type="radio" id="COD" name="payment" value="COD" />
+                          <input type="radio" id="COD" name="payment" value="COD" ref={orderPaymentRef}/>
                           <label for="COD">Trả tiền khi nhận hàng</label><br />
-                          <input type="radio" id="CARD" name="payment" value="CARD" />
+                          <input type="radio" id="CARD" name="payment" value="CARD" ref={orderPaymentRef}/>
                           <label for="CARD">Chuyển Khoản</label><br />
                         </form>
                       </div>
@@ -137,9 +158,7 @@ const Cart = () => {
                                 </p>
                               </div>
                             </div>
-                            <NavLink to="/status">
-                                <Button className="ord_btn">Đặt hàng</Button> 
-                            </NavLink>
+                                <Button onClick={CheckoutHandler} className="ord_btn">Đặt hàng</Button> 
 
                         </div>
                       </div>

@@ -18,7 +18,6 @@ const Product = (curElem) => {
   const [imageUrls, setImageUrls] = useState([]);
   const imagesRef = ref(storage, `Images/${id}/Logo.jpg`);
 
-  console.log(curElem)
 
   useEffect(() => {
     getDownloadURL(imagesRef)

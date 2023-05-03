@@ -3,8 +3,9 @@ import FormatPrice from "../Helpers/FormatPrice";
 import CartAmountToggle from "./CartAmountToggle";
 import { FaTrash } from "react-icons/fa";
 import { useCartContext } from "../context/cart_context";
+import { NavLink } from "react-router-dom";
 
-const OrderCartItem = ({ id, name, image, price, amount }) => {
+const OrderHistoryItem = ({ id, name, image, price, amount }) => {
   const { removeItem, setDecrease, setIncrement } = useCartContext();
 
   return (
@@ -19,23 +20,16 @@ const OrderCartItem = ({ id, name, image, price, amount }) => {
           <p>{name}</p>
         </div>
       </div>
-      {/* price   */}
-      <div className="cart-hide">
-        <p>
-          <FormatPrice price={price + 20000} />
-        </p>
-      </div>
-      <div>
-        <p>
-          {amount}
-        </p>
-      </div>
 
       <div>
-       <p style={{color:"#E4A11B"}}>Đang Giao</p>
+        <NavLink to="/review">
+            <p style={{color:"Green",
+            fontStyle:"italic",
+        }}>Viết Đánh Giá</p>
+        </NavLink>
       </div>
     </div>
   );
 };
 
-export default OrderCartItem;
+export default OrderHistoryItem;

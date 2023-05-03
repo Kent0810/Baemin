@@ -1,19 +1,16 @@
 import styled from "styled-components";
 import { useOrderContext } from "../context/order_context";
-import OrderCartItem from "./OrderCartItem";
 import React from "react";
-const OrderStatus = () => {
+import OrderHistoryItem from "./OrderHistoryItem";
+const OrderHistory = () => {
     const {order} = useOrderContext();
-    console.log(order)
-    return (
+    return(
         <Wrapper>
-            <h1>Order Status</h1>
+            <h1>Order History</h1>
             {order.length>0&&
               <div className="cart_heading grid grid-five-column">
                   <p>Quán Ăn</p>
-                  <p className="cart-hide">Giá</p>
-                  <p>Số Lượng</p>
-                  <p>Tình Trạng</p>
+                  <p>Đánh Giá</p>
               </div>
             }
             {order.length>0&&<hr />}
@@ -21,7 +18,7 @@ const OrderStatus = () => {
                 {order?.map((curElem) => {
                     return (
                       <React.Fragment>
-                        <OrderCartItem key={curElem.id} {...curElem} />
+                        <OrderHistoryItem key={curElem.id} {...curElem} />
 
                       </React.Fragment>
                     )
@@ -31,12 +28,12 @@ const OrderStatus = () => {
         </Wrapper>
     )
 }
-
-
-//
 const Wrapper = styled.section`
-    width:100%;
+    width:70%;
+    margin-top: 5rem;
   padding: 9rem 10rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  border-radius: 25px;
   h1{
     font-size: 3rem;
     margin-top:-5rem;
@@ -177,7 +174,7 @@ const Wrapper = styled.section`
   }
 
   .grid-five-column {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     text-align: center;
     align-items: center;
   }
@@ -216,12 +213,10 @@ const Wrapper = styled.section`
   }
   .cart-image--name {
     /* background-color: red; */
+    width: 100%;
+    display: flex;
+    justify-content:center;
     align-items: center;
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: 0.4fr 1fr;
-    text-transform: capitalize;
-    text-align: left;
     img {
       max-width: 15rem;
       width: 15rem;
@@ -349,4 +344,5 @@ const Wrapper = styled.section`
   }
 `;
 
-export default OrderStatus;
+
+export default OrderHistory;

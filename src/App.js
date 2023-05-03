@@ -15,6 +15,7 @@ import Login from "./Login";
 import Status from "./Status";
 import Profile from "./Profile";
 import User from "./User";
+import Review from "./Review";
 
 const App = () => {
   const theme = {
@@ -58,6 +59,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/status" element={<Status />} />
           <Route path="/user" element={<User />} />
+          <Route path="/review" element={<Review />}></Route>
           <Route path="/user/profile" element={<Profile />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
